@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Water2D
+  m_Shader: {fileID: 4800000, guid: ae261ccbd79b246a88feb694cda2b653, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _FlowTexture:
+        m_Texture: {fileID: 2800000, guid: cd460ee4ac5c1e746b7a734cc7cc64dd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture0:
+        m_Texture: {fileID: 2800000, guid: 9a4a55d8d2e54394d97426434477cdcf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: f7e96904e8667e1439548f0f86389447, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Amp: 9.57
+    - _ColorMask: 15
+    - _Decay: 1
+    - _Float0: 0.0077
+    - _Frec: 0.1
+    - _Frecuency1: 1
+    - _ImpactStart: 5.06
+    - _ImpactStrength: 4.09
+    - _Radious: 10
+    - _ReflectionMovement: 0
+    - _ReflectionPos: 0
+    - _RippleFrec: 5.12
+    - _RippleSpeed: 10
+    - _SOS: 1.8
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _TimeScale: 1
+    - _TimeScalePanner: 0.91
+    - _UseUIAlphaClip: 0
+    - _altura: 198.9
+    - _amp: 100.61
+    m_Colors:
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color0: {r: 0, g: 0.021229267, b: 1, a: 0.3529412}
+    - _FirstColor: {r: 0.0048570633, g: 0, b: 1, a: 1}
+    - _ImpactPos: {r: -0.09, g: -36.48, b: 0, a: 0}
+    - _PanSpeed: {r: 1, g: 0.05, b: 0, a: 0}
+    - _SecondColor: {r: 0.6523863, g: 0.6179246, b: 1, a: 0.43137255}
+    - _Vector0: {r: 1, g: 1, b: 0, a: 0}
+    - _Vector1: {r: 18.17, g: -27.85, b: 0, a: 0}
+    - _oas: {r: 28.48, g: 22.07, b: 0, a: 0}
+  m_BuildTextureStacks: []
