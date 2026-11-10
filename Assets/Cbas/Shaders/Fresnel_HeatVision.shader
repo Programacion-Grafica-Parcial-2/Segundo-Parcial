@@ -14,7 +14,7 @@ Shader "Fresnel_HeatVision"
 
 	SubShader
 	{
-		Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+0" }
+		Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+0" "IsEmissive" = "true"  }
 		Cull Back
 		CGINCLUDE
 		#include "UnityPBSLighting.cginc"
@@ -48,7 +48,7 @@ Shader "Fresnel_HeatVision"
 			float fresnelNdotV19 = dot( ase_worldNormal, i.viewDir );
 			float fresnelNode19 = ( _Bias + _FresScale * pow( 1.0 - fresnelNdotV19, _FresnelPow ) );
 			float4 lerpResult21 = lerp( _Heat , _Cold , fresnelNode19);
-			o.Albedo = saturate( lerpResult21 ).rgb;
+			o.Emission = saturate( lerpResult21 ).rgb;
 			o.Alpha = saturate( fresnelNode19 );
 		}
 
@@ -139,7 +139,7 @@ Shader "Fresnel_HeatVision"
 }
 /*ASEBEGIN
 Version=18900
-193.5;92;812;656.5;986.882;235.0788;1;True;False
+194.5;92;659;656.5;444.8994;239.736;1;True;False
 Node;AmplifyShaderEditor.RangedFloatNode;14;-667.3284,506.6249;Inherit;False;Property;_FresScale;FresScale;2;0;Create;True;0;0;0;False;0;False;0;15.73;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;15;-650.1826,577.3248;Inherit;False;Property;_FresnelPow;FresnelPow;1;0;Create;True;0;0;0;False;0;False;1;8.1;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.WorldNormalVector;16;-858.9351,176.7435;Inherit;False;False;1;0;FLOAT3;0,0,1;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
@@ -162,7 +162,7 @@ WireConnection;21;1;20;0
 WireConnection;21;2;19;0
 WireConnection;23;0;19;0
 WireConnection;24;0;21;0
-WireConnection;0;0;24;0
+WireConnection;0;2;24;0
 WireConnection;0;9;23;0
 ASEEND*/
-//CHKSM=F64DC60E62956543610D3F6EBB19C1C863C11F8E
+//CHKSM=079A1DA4B6BC385F360B8AE68DC988DCDA22085C

@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 21c35adf3087547b3903080ef326848f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -22,20 +22,20 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Bias: -1.17
+    - _Bias: 0
     - _Bias1: 0
     - _Bias2: 0
-    - _FresScale: 2.87
+    - _FresScale: 2.75
     - _FresScale1: 1.99
     - _FresScale2: 1
-    - _FresnelPow: 0.78
+    - _FresnelPow: 2.21
     - _FresnelPow1: 1.77
     - _FresnelPow2: 7.91
     - __dirty: 0
     m_Colors:
-    - _Cold: {r: 0, g: 0.020618439, b: 1, a: 1}
+    - _Cold: {r: 0.66222334, g: 0, b: 1, a: 0}
     - _Color0: {r: 0, g: 0.8018868, b: 0.003427368, a: 0}
     - _Color1: {r: 0, g: 0.8018868, b: 0.003427368, a: 0}
     - _Color3: {r: 0, g: 0.8018868, b: 0.003427368, a: 0}
-    - _Heat: {r: 1, g: 0, b: 0, a: 1}
+    - _Heat: {r: 1, g: 0.31442916, b: 0, a: 1}
   m_BuildTextureStacks: []
