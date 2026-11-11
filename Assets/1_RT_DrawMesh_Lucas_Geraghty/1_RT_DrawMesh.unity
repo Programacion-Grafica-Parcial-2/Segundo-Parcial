@@ -420,12 +420,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2eae03f13bc6f43b4ac5fbb4620879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mesh: {fileID: 0}
+  mesh: {fileID: 4300000, guid: 7458e5fab76a4a018761ee9eeaca0fbc, type: 3}
   meshes: []
-  material: {fileID: 0}
+  material: {fileID: 2100000, guid: 3f1367392525c214ba157cebb1a6a579, type: 2}
   position: {x: 0, y: 0, z: 0}
-  range: 0
-  copiesAmount: 0
+  range: 10
+  copiesAmount: 27
   rotationSpeed: 45
 --- !u!4 &1586705506
 Transform:

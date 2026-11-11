@@ -16,7 +16,7 @@ public class CameraRenderTexture : MonoBehaviour
         renderTexture.Create();
         RTCamera.targetTexture = renderTexture;
     }
-    void Update()
+    void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
