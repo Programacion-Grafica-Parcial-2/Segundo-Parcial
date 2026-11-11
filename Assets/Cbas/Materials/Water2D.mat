@@ -42,7 +42,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amp: 9.57
+    - _Amp: 5.1
     - _ColorMask: 15
     - _Decay: 1
     - _Float0: 0.0077
@@ -51,8 +51,8 @@ Material:
     - _ImpactStart: 5.06
     - _ImpactStrength: 4.09
     - _Radious: 10
-    - _ReflectionMovement: 0
-    - _ReflectionPos: 0
+    - _ReflectionMovement: 0.0444
+    - _ReflectionPos: 0.09
     - _RippleFrec: 5.12
     - _RippleSpeed: 10
     - _SOS: 1.8

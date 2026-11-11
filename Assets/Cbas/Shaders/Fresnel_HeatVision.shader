@@ -6,8 +6,6 @@ Shader "Fresnel_HeatVision"
 	{
 		_FresnelPow("FresnelPow", Float) = 1
 		_FresScale("FresScale", Float) = 0
-		_Cold("Cold", Color) = (0.05724907,0,1,0)
-		_Heat("Heat", Color) = (1,0,0.121644,1)
 		_Bias("Bias", Float) = 0
 		[HideInInspector] __dirty( "", Int ) = 1
 	}
@@ -36,19 +34,79 @@ Shader "Fresnel_HeatVision"
 			INTERNAL_DATA
 		};
 
-		uniform float4 _Heat;
-		uniform float4 _Cold;
 		uniform float _Bias;
 		uniform float _FresScale;
 		uniform float _FresnelPow;
 
+
+		struct Gradient
+		{
+			int type;
+			int colorsLength;
+			int alphasLength;
+			float4 colors[8];
+			float2 alphas[8];
+		};
+
+
+		Gradient NewGradient(int type, int colorsLength, int alphasLength, 
+		float4 colors0, float4 colors1, float4 colors2, float4 colors3, float4 colors4, float4 colors5, float4 colors6, float4 colors7,
+		float2 alphas0, float2 alphas1, float2 alphas2, float2 alphas3, float2 alphas4, float2 alphas5, float2 alphas6, float2 alphas7)
+		{
+			Gradient g;
+			g.type = type;
+			g.colorsLength = colorsLength;
+			g.alphasLength = alphasLength;
+			g.colors[ 0 ] = colors0;
+			g.colors[ 1 ] = colors1;
+			g.colors[ 2 ] = colors2;
+			g.colors[ 3 ] = colors3;
+			g.colors[ 4 ] = colors4;
+			g.colors[ 5 ] = colors5;
+			g.colors[ 6 ] = colors6;
+			g.colors[ 7 ] = colors7;
+			g.alphas[ 0 ] = alphas0;
+			g.alphas[ 1 ] = alphas1;
+			g.alphas[ 2 ] = alphas2;
+			g.alphas[ 3 ] = alphas3;
+			g.alphas[ 4 ] = alphas4;
+			g.alphas[ 5 ] = alphas5;
+			g.alphas[ 6 ] = alphas6;
+			g.alphas[ 7 ] = alphas7;
+			return g;
+		}
+
+
+		float4 SampleGradient( Gradient gradient, float time )
+		{
+			float3 color = gradient.colors[0].rgb;
+			UNITY_UNROLL
+			for (int c = 1; c < 8; c++)
+			{
+			float colorPos = saturate((time - gradient.colors[c-1].w) / ( 0.00001 + (gradient.colors[c].w - gradient.colors[c-1].w)) * step(c, (float)gradient.colorsLength-1));
+			color = lerp(color, gradient.colors[c].rgb, lerp(colorPos, step(0.01, colorPos), gradient.type));
+			}
+			#ifndef UNITY_COLORSPACE_GAMMA
+			color = half3(GammaToLinearSpaceExact(color.r), GammaToLinearSpaceExact(color.g), GammaToLinearSpaceExact(color.b));
+			#endif
+			float alpha = gradient.alphas[0].x;
+			UNITY_UNROLL
+			for (int a = 1; a < 8; a++)
+			{
+			float alphaPos = saturate((time - gradient.alphas[a-1].y) / ( 0.00001 + (gradient.alphas[a].y - gradient.alphas[a-1].y)) * step(a, (float)gradient.alphasLength-1));
+			alpha = lerp(alpha, gradient.alphas[a].x, lerp(alphaPos, step(0.01, alphaPos), gradient.type));
+			}
+			return float4(color, alpha);
+		}
+
+
 		void surf( Input i , inout SurfaceOutputStandard o )
 		{
+			Gradient gradient29 = NewGradient( 0, 4, 2, float4( 1, 0, 0.1215686, 0 ), float4( 0.1818246, 0.8181754, 0.05418948, 0.2617685 ), float4( 0, 1, 0.03921569, 0.7499962 ), float4( 0.05882353, 0, 1, 1 ), 0, 0, 0, 0, float2( 1, 0 ), float2( 1, 1 ), 0, 0, 0, 0, 0, 0 );
 			float3 ase_worldNormal = i.worldNormal;
 			float fresnelNdotV19 = dot( ase_worldNormal, i.viewDir );
 			float fresnelNode19 = ( _Bias + _FresScale * pow( 1.0 - fresnelNdotV19, _FresnelPow ) );
-			float4 lerpResult21 = lerp( _Heat , _Cold , fresnelNode19);
-			o.Emission = saturate( lerpResult21 ).rgb;
+			o.Emission = saturate( SampleGradient( gradient29, fresnelNode19 ) ).rgb;
 			o.Alpha = saturate( fresnelNode19 );
 		}
 
@@ -139,30 +197,30 @@ Shader "Fresnel_HeatVision"
 }
 /*ASEBEGIN
 Version=18900
-194.5;92;659;656.5;444.8994;239.736;1;True;False
+224;73;1230;557;959.3486;171.2846;1;True;False
 Node;AmplifyShaderEditor.RangedFloatNode;14;-667.3284,506.6249;Inherit;False;Property;_FresScale;FresScale;2;0;Create;True;0;0;0;False;0;False;0;15.73;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;15;-650.1826,577.3248;Inherit;False;Property;_FresnelPow;FresnelPow;1;0;Create;True;0;0;0;False;0;False;1;8.1;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.WorldNormalVector;16;-858.9351,176.7435;Inherit;False;False;1;0;FLOAT3;0,0,1;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.ViewDirInputsCoordNode;17;-849.6922,328.9792;Inherit;False;World;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.RangedFloatNode;18;-758.8761,506.7454;Inherit;False;Property;_Bias;Bias;5;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.FresnelNode;19;-505.9183,342.6264;Inherit;False;Standard;WorldNormal;ViewDir;False;False;5;0;FLOAT3;0,0,1;False;4;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;1;False;3;FLOAT;5;False;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;27;-564.882,-164.5788;Inherit;False;Property;_Heat;Heat;4;0;Create;True;0;0;0;False;0;False;1,0,0.121644,1;0,0.427451,0.07745697,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.ColorNode;20;-637.5117,56.39355;Inherit;False;Property;_Cold;Cold;3;0;Create;True;0;0;0;False;0;False;0.05724907,0,1,0;0,0.427451,0.07745697,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.LerpOp;21;-394.5501,44.70829;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SaturateNode;23;-293.0244,224.83;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SaturateNode;24;-280.9966,-23.43071;Inherit;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;0,0;Float;False;True;-1;2;ASEMaterialInspector;0;0;Standard;Fresnel_HeatVision;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Back;0;False;-1;0;False;-1;False;0;False;-1;0;False;-1;False;0;Custom;0.5;True;True;0;False;Opaque;;Geometry;All;14;all;True;True;True;True;0;False;-1;False;0;False;-1;255;False;-1;255;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;False;2;15;10;25;False;0.5;True;0;0;False;-1;0;False;-1;0;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;0;0,0,0,0;VertexOffset;True;False;Cylindrical;False;Relative;0;;0;-1;-1;-1;0;False;0;0;False;-1;-1;0;False;-1;0;0;0;False;0.1;False;-1;0;False;-1;False;16;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
+Node;AmplifyShaderEditor.GradientNode;29;-518.3698,-43.89487;Inherit;False;0;4;2;1,0,0.1215686,0;0.1818246,0.8181754,0.05418948,0.2617685;0,1,0.03921569,0.7499962;0.05882353,0,1,1;1,0;1,1;0;1;OBJECT;0
+Node;AmplifyShaderEditor.GradientSampleNode;32;-267.1541,-24.17892;Inherit;True;2;0;OBJECT;;False;1;FLOAT;0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;27;-710.882,-152.5788;Inherit;False;Property;_Heat;Heat;4;0;Create;True;0;0;0;False;0;False;1,0,0.121644,1;0,0.427451,0.07745697,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;20;-711.5117,42.39355;Inherit;False;Property;_Cold;Cold;3;0;Create;True;0;0;0;False;0;False;0.05724907,0,1,0;0,0.427451,0.07745697,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SaturateNode;24;53.73056,-21.55022;Inherit;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SaturateNode;23;-114.3779,190.9812;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;221.8978,-26.32685;Float;False;True;-1;2;ASEMaterialInspector;0;0;Standard;Fresnel_HeatVision;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Back;0;False;-1;0;False;-1;False;0;False;-1;0;False;-1;False;0;Custom;0.5;True;True;0;True;Opaque;;Geometry;All;14;all;True;True;True;True;0;False;-1;False;0;False;-1;255;False;-1;255;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;False;2;15;10;25;False;0.5;True;0;0;False;-1;0;False;-1;0;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;0;0,0,0,0;VertexOffset;True;False;Cylindrical;False;Relative;0;;0;-1;-1;-1;0;False;0;0;False;-1;-1;0;False;-1;0;0;0;False;0.1;False;-1;0;False;-1;False;16;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
 WireConnection;19;0;16;0
 WireConnection;19;4;17;0
 WireConnection;19;1;18;0
 WireConnection;19;2;14;0
 WireConnection;19;3;15;0
-WireConnection;21;0;27;0
-WireConnection;21;1;20;0
-WireConnection;21;2;19;0
+WireConnection;32;0;29;0
+WireConnection;32;1;19;0
+WireConnection;24;0;32;0
 WireConnection;23;0;19;0
-WireConnection;24;0;21;0
 WireConnection;0;2;24;0
 WireConnection;0;9;23;0
 ASEEND*/
-//CHKSM=079A1DA4B6BC385F360B8AE68DC988DCDA22085C
+//CHKSM=CC66CB2488241346A160DD5A7CC32836E5147E4E
