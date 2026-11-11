@@ -111,7 +111,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5668018625765603158}
-  - component: {fileID: 6777933980905227536}
   m_Layer: 0
   m_Name: BoxSashWindowFurnitureNoBarsWhite
   m_TagString: Untagged
@@ -135,22 +134,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!119 &6777933980905227536
-Projector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5668018625765305206}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_NearClipPlane: 0.01
-  m_FarClipPlane: 7.4
-  m_FieldOfView: 57.1
-  m_AspectRatio: 0.59
-  m_Orthographic: 1
-  m_OrthographicSize: 0.7
-  m_Material: {fileID: 0}
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 0
