@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17757869, g: 0.22232202, b: 0.3045168, a: 1}
+  m_IndirectSpecularColor: {r: 0.18368474, g: 0.22913411, b: 0.30497795, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -151,7 +151,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.79000777, b: 0.6333433, a: 1}
+  m_Color: {r: 1, g: 0.63700074, b: 0.43833432, a: 1}
   m_Intensity: 0.85
   m_Range: 10
   m_SpotAngle: 30
@@ -209,7 +209,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955160081}
-  m_LocalRotation: {x: -0.007557397, y: 0.49998093, z: -0.8659925, w: -0.0043632644}
+  m_LocalRotation: {x: -0.000000041911342, y: 0.28401533, z: -0.95881975, w: -0.000000012414704}
   m_LocalPosition: {x: -0.23, y: 3.176, z: -4.748}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -248,7 +248,7 @@ Projector:
   m_FieldOfView: 59.96
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: 0.7
+  m_OrthographicSize: 0.67
   m_Material: {fileID: 2100000, guid: 1db247393f0af434aae142a1181d9d2a, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
@@ -260,7 +260,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264470305}
-  m_LocalRotation: {x: -0.007557397, y: 0.49998093, z: -0.8659925, w: -0.0043632644}
+  m_LocalRotation: {x: -0.000000041911342, y: 0.28401533, z: -0.95881975, w: -0.000000012414704}
   m_LocalPosition: {x: -0.038, y: 0.82, z: -0.21999979}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -397,10 +397,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sun: {fileID: 955160082}
   windowProjector: {fileID: 1264470306}
-  hour: 14
+  hour: 15.8
   autoPlay: 0
   secondsPerDay: 60
-  azimuth: 181
+  azimuth: 180
   lightColor:
     serializedVersion: 2
     key0: {r: 0.1, g: 0.12, b: 0.3, a: 1}
@@ -600,14 +600,6 @@ PrefabInstance:
     - target: {fileID: 5668018625767503286, guid: f3c95557938676441b2f85e16c71d5a0, type: 3}
       propertyPath: m_ReceiveShadows
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2100000, guid: 1db247393f0af434aae142a1181d9d2a, type: 2}
-    - target: {fileID: 0}
-      propertyPath: m_Orthographic
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3c95557938676441b2f85e16c71d5a0, type: 3}

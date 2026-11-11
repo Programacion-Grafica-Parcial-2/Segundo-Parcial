@@ -46,7 +46,7 @@ Material:
     - _ColorMask: 15
     - _Decay: 1
     - _Float0: 0.0077
-    - _Frec: 0.1
+    - _Frec: 0.0942
     - _Frecuency1: 1
     - _ImpactStart: 5.06
     - _ImpactStrength: 4.09
@@ -64,7 +64,7 @@ Material:
     - _TimeScale: 1
     - _TimeScalePanner: 0.91
     - _UseUIAlphaClip: 0
-    - _altura: 198.9
+    - _altura: 192.8
     - _amp: 100.61
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 1}
