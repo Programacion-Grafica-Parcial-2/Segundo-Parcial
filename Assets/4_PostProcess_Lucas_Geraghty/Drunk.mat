@@ -34,10 +34,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Amplitude: 0.01
     - _Distortion: 0.004
     - _Float0: 3
     - _Float1: 1
     - _Float2: 1
+    - _Frequency: 10
     - _Speed: 5
     m_Colors: []
   m_BuildTextureStacks: []
