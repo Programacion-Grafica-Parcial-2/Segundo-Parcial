@@ -1,5 +1,56 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1264470305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1264470307}
+  - component: {fileID: 1264470306}
+  m_Layer: 5
+  m_Name: Projector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1264470307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264470305}
+  m_LocalRotation: {x: 0.053650476, y: 0.47626877, z: -0.87717795, w: 0.02912983}
+  m_LocalPosition: {x: -0.038, y: 0.82, z: -0.21999979}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5668018625765603158}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 25.614, y: 0, z: 0}
+--- !u!119 &1264470306
+Projector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264470305}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: 0.83
+  m_FarClipPlane: 9
+  m_FieldOfView: 59.96
+  m_AspectRatio: 1
+  m_Orthographic: 1
+  m_OrthographicSize: 0.67
+  m_Material: {fileID: 2100000, guid: 1db247393f0af434aae142a1181d9d2a, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 32
 --- !u!1 &5668018625765305204
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +63,7 @@ GameObject:
   - component: {fileID: 5668018625768470390}
   - component: {fileID: 5668018625767503286}
   - component: {fileID: 5668018625771587030}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +101,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5668018625765305204}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -111,7 +162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5668018625765603158}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BoxSashWindowFurnitureNoBarsWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,6 +182,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5668018625765603156}
+  - {fileID: 1264470307}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
