@@ -4,5 +4,41 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/1_RT_DrawMesh_Lucas_Geraghty/1_RT_DrawMesh.unity
+    guid: 7d1e5373fffe25d4aaf1798cffdd4892
+  - enabled: 1
+    path: Assets/2_Distance_Maria_Im/DistanceWall.unity
+    guid: b9b648503176cd043b2f5818b8e30c41
+  - enabled: 1
+    path: Assets/3_ZBuffer_Marco_DiVito/Punto 3 - Z-Buffer.unity
+    guid: 63a9d8bf7c78e5c4c811dc04e50fc750
+  - enabled: 1
+    path: Assets/4_PostProcess_Lucas_Geraghty/4_PostProcess.unity
+    guid: d25e965701f7748459be37c474298731
+  - enabled: 1
+    path: Assets/5_Sprites_Sebas_Boianelli/5-Water2D.unity
+    guid: fb574131dd96c4b3d8facf9f6a3626d9
+  - enabled: 1
+    path: Assets/7_Stencil_Lucas_Geraghty/7_Stencil.unity
+    guid: 94775d701c71391488cfd590d0c74805
+  - enabled: 1
+    path: Assets/8_Stencil_Maria_Im/CartaTCG.unity
+    guid: a2ed04adb79c5b74ab354d73434b287e
+  - enabled: 1
+    path: Assets/9_Projector_Marco_DiVito/Punto 9 - Projector.unity
+    guid: e9bbd5e9c75772f4984182119156b813
+  - enabled: 1
+    path: Assets/10_Proyector_Maria_Im/Ventana-Proyector.unity
+    guid: bb81fca2e1abd1b4abc522eda634a730
+  - enabled: 1
+    path: Assets/11_Projector_Sebas_Boianelli/11-HEAT_VISION.unity
+    guid: 0528a72ef199644b888d8b53779c02ec
+  - enabled: 1
+    path: Assets/11_Projector_Sebas_Boianelli/11-LightPath.unity
+    guid: 6cdee20344b1f42cc841a31379d45a9f
+  - enabled: 1
+    path: Assets/11_Projector_Sebas_Boianelli/11-Xrays.unity
+    guid: 8b9f2d54ef99f4736851c6893173f7f1
   m_configObjects: {}
