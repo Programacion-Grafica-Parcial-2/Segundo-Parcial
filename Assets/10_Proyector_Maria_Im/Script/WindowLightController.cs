@@ -1,12 +1,21 @@
 using UnityEngine;
 
-
+/// <summary>
+/// Controla la "hora del dia": rota el sol (Directional Light), hace que el Projector
+/// de la ventana siga la direccion del sol, y ajusta el color y la intensidad de la luz.
+///
+/// Va en cualquier GameObject de la escena (por ejemplo un Empty "DayController").
+/// Funciona con el Projector del Built-in Render Pipeline.
+/// </summary>
 [ExecuteAlways]
 public class WindowLightController : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] private Light sun;                  // la Directional Light
     [SerializeField] private Projector windowProjector;  // el Projector puesto en la ventana
+
+    [Tooltip("Material del Projector (el asset del Project). Si queda vacio usa el que tenga el Projector.")]
+    [SerializeField] private Material projectorMaterial;
 
     [Header("Hora del dia")]
     [Tooltip("0 = medianoche, 6 = amanecer, 12 = mediodia, 18 = atardecer.")]
@@ -26,7 +35,9 @@ public class WindowLightController : MonoBehaviour
     private static readonly int ColorID = Shader.PropertyToID("_Color");
     private static readonly int IntensityID = Shader.PropertyToID("_Intensity");
 
+    // En Play: copia propia del material. En el editor: el material original.
     private Material _instance;
+    private Material _target;
 
     // Valores iniciales cuando agregas el componente.
     private void Reset()
@@ -46,21 +57,44 @@ public class WindowLightController : MonoBehaviour
 
     private void OnEnable()
     {
-        // El Projector no soporta MaterialPropertyBlock, por eso se instancia el material.
-        if (windowProjector != null && _instance == null && windowProjector.material != null)
+        if (windowProjector != null)
         {
-            _instance = new Material(windowProjector.material) { hideFlags = HideFlags.HideAndDontSave };
-            windowProjector.material = _instance;
+            // Si no se asigno, guardamos el material que ya tiene el Projector.
+            if (projectorMaterial == null)
+                projectorMaterial = windowProjector.material;
+
+            if (Application.isPlaying)
+            {
+                // El Projector no soporta MaterialPropertyBlock, por eso se instancia el material.
+                // Solo en Play: en el editor NO se reemplaza el material, porque la escena
+                // guardaria una referencia vacia (y en el build el Projector quedaria sin material).
+                if (_instance == null && projectorMaterial != null)
+                {
+                    _instance = new Material(projectorMaterial) { name = projectorMaterial.name + " (Instance)" };
+                    windowProjector.material = _instance;
+                }
+                _target = _instance;
+            }
+            else
+            {
+                _target = projectorMaterial; // vista previa en el editor
+            }
         }
+
         Apply();
     }
 
     private void OnDisable()
     {
         if (_instance == null) return;
-        if (Application.isPlaying) Destroy(_instance);
-        else DestroyImmediate(_instance);
+
+        // Dejamos el material original puesto en el Projector.
+        if (windowProjector != null && projectorMaterial != null)
+            windowProjector.material = projectorMaterial;
+
+        Destroy(_instance);
         _instance = null;
+        _target = null;
     }
 
     private void Update()
@@ -91,14 +125,14 @@ public class WindowLightController : MonoBehaviour
 
         if (windowProjector == null) return;
 
-        // El projector sigue la direccion del sol: asi la sombra de la persiana
+        // El projector sigue la direccion del sol: asi la sombra de la ventana
         // se desplaza y se estira a lo largo del dia.
         windowProjector.transform.rotation = sun.transform.rotation;
 
-        if (_instance != null)
+        if (_target != null)
         {
-            _instance.SetColor(ColorID, c);
-            _instance.SetFloat(IntensityID, day);
+            _target.SetColor(ColorID, c);
+            _target.SetFloat(IntensityID, day);
         }
     }
 }

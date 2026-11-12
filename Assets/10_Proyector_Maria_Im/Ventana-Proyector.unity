@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1796163, g: 0.22490093, b: 0.30646893, a: 1}
+  m_IndirectSpecularColor: {r: 0.17961615, g: 0.22490042, b: 0.3064686, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 942199607}
   - component: {fileID: 942199606}
   m_Layer: 0
-  m_Name: Piso (1)
+  m_Name: Pared
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -449,9 +449,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sun: {fileID: 955160082}
   windowProjector: {fileID: 1264470306}
+  projectorMaterial: {fileID: 2100000, guid: 1db247393f0af434aae142a1181d9d2a, type: 2}
   hour: 14.5
   autoPlay: 1
-  secondsPerDay: 60
+  secondsPerDay: 40
   azimuth: 180
   lightColor:
     serializedVersion: 2

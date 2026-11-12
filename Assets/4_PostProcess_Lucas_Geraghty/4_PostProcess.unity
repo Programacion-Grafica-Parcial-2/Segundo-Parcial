@@ -221,6 +221,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 99b33aa1d7126c04abcf2bbfdb4eddbc, type: 2}
+  materials:
+  - {fileID: 2100000, guid: 99b33aa1d7126c04abcf2bbfdb4eddbc, type: 2}
+  - {fileID: 2100000, guid: e9d554b46a5263747845f3079eaecd0f, type: 2}
+  - {fileID: 2100000, guid: dfe5d8008c118794f8b1a6eec6b240dc, type: 2}
+  cycleKey: 9
 --- !u!1 &1218424291
 GameObject:
   m_ObjectHideFlags: 0

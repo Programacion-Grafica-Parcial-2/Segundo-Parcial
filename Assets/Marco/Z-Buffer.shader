@@ -117,7 +117,7 @@ Shader "Z-Buffer"
 }
 /*ASEBEGIN
 Version=18900
-224;73;1230;557;943.0941;315.15;1.3;True;False
+966;182;480;543;636.8234;571.0396;2.284943;False;False
 Node;AmplifyShaderEditor.RangedFloatNode;4;-694.1438,127.4999;Inherit;False;Property;_Power;Power;0;0;Create;True;0;0;0;False;0;False;0;1;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.ColorNode;1;-480.9439,189.9002;Inherit;False;Constant;_Color0;Color 0;0;0;Create;True;0;0;0;False;0;False;1,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.FresnelNode;2;-461.4444,-16.80002;Inherit;False;Standard;WorldNormal;ViewDir;False;False;5;0;FLOAT3;0,0,1;False;4;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;1;False;3;FLOAT;5;False;1;FLOAT;0
@@ -128,4 +128,4 @@ WireConnection;3;0;2;0
 WireConnection;3;1;1;0
 WireConnection;0;2;3;0
 ASEEND*/
-//CHKSM=6DDEABAD11D2E72B7E27E5E398C93AAF0602CEF4
+//CHKSM=7ABC7BDD1DB7AE2799CA6432C8458D41228F148F
