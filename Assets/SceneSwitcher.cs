@@ -32,7 +32,7 @@ public class SceneSwitcher : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.PageUp) || Input.GetKeyDown(KeyCode.B))
             Load((current - 1 + count) % count);
 
-        // Teclas 1..9 para saltar directo.
+        
         for (int i = 0; i < Mathf.Min(count, 11); i++)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
