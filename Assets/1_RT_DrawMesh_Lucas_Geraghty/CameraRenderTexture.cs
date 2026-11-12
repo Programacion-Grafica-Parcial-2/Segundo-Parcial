@@ -12,11 +12,11 @@ public class CameraRenderTexture : MonoBehaviour
             RTCamera = GetComponent<Camera>();
             RTCamera.enabled = false;
         }
-        renderTexture = new RenderTexture(640, 360, 16);
+        renderTexture = new RenderTexture(256, 256, 16);
         renderTexture.Create();
         RTCamera.targetTexture = renderTexture;
     }
-    void Update()
+    void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
